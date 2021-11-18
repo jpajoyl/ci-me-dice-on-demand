@@ -1,3 +1,12 @@
+# clone repo
+git:
+  depth: 3
+  quiet: true
+
+branches:
+  only:
+    - main
+
 language: python
 python:
   - "3.10"
