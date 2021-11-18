@@ -43,3 +43,7 @@ flask run
 2. Now, click on the `roll` button!
 3. You should see a message on the screen - "You Rolled a ..."
 4. That's it!
+
+# Build info
+
+[![Build Status](https://app.travis-ci.com/jpajoyl/ci-me-dice-on-demand.svg?branch=main)](https://app.travis-ci.com/jpajoyl/ci-me-dice-on-demand)
