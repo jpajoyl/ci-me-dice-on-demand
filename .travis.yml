@@ -1,20 +1,22 @@
 language: python
 python:
-  - "3.9"
-# command to install dependencies
+- '3.9'
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 jobs:
   include:
-    - stage: unit tests
-      script: python -m pytest -v tests/test_dice.py
-    - stage: deploy to staging
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        app: ci-me-dice-on-demand-jpajoyl-s
-        api_key: $HEROKU_AUTH_TOKEN
-        on:
-          branch: main
-    - stage: test staging
-      script: 'curl https://ci-me-dice-on-demand-jpajoyl-s.herokuapp.com/'
+  - stage: unit tests
+    script: python -m pytest -v tests/test_dice.py
+  - stage: deploy to staging
+    script: skip
+    deploy:
+      provider: heroku
+      app: ci-me-dice-on-demand-jpajoyl-s
+      api_key: "$HEROKU_AUTH_TOKEN"
+      on:
+        branch: main
+  - stage: test staging
+    script: curl https://ci-me-dice-on-demand-jpajoyl-s.herokuapp.com/
+notifications:
+  slack:
+    secure: Z3khIvqT+k5oBvFbir5LvP1xVBmpo5YqDhI/4Q1BnprZh+H44SPd6iVg5tnKqOscSP1yHtqz2D9oGoFUvcII8jq7HxNEGmTOpNdUZzlZ2d8wtIbhDWsNWB8enPTQGhZXPkmro14Vgzy1fV+6Z6iUF9cpPrZtUqHiuqPqM3iJ8hz2MkHATrY+h1AEqA3I0EwVd1uindnZ7vl/GIkBek1ujwHa8W0En4Xunogfzu/CJvWJGJOxv/w4IXPNZD1W1qsdw28BIlUeai2Q7c62zi/X3dh6u1fmyyinvubO86qD2s7DYHrhDoJGFACCHc/lSESWpfpOzjUPCW5U9Zmgmkewb2x41XPp4Hck73Qt6RA1r8NnM+Thxi8JEoznhjqbUeI8R39wC4azmnEddcYlvcl+MqwTvpH948YZ1UrbFVMozBugWDequE4Ccd2O+xgu5czYJX3qIxTrkeWTfnASlSfG8VbdZd4jwQ8NJVvyMgvI3N4Pswpw6UrQxb/PYNC+A2HgQ7nuJwuLhH4PvQB6x+zybvLZrmfHtKB4dcPpjy6pcWgY/8xZ7YaqhrmzFEZ7zqDO+VKmdfmtJoM3MncrFcr++gJ2N26GgyWwNdr8A9w7X/JwUQjCLrQKq7pCqV9KUeJv73+EFJFQMmazMZRanwZOPj6gEXrV335XdcRbsHPXZ6U=
