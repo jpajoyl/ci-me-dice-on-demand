@@ -14,5 +14,7 @@ jobs:
         provider: heroku
         app: ci-me-dice-on-demand-jpajoyl-s
         api_key: $HEROKU_AUTH_TOKEN
+        on:
+          branch: main
     - stage: test staging
       script: 'curl https://ci-me-dice-on-demand-jpajoyl-s.herokuapp.com/'
