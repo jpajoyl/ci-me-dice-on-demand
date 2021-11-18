@@ -4,6 +4,15 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-# command to run tests
-script:
-  -  python -m pytest -v tests/test_dice.py
+jobs:
+  include:
+    - stage: unit tests
+      script: python -m pytest -v tests/test_dice.py
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: ci-me-dice-on-demand-jpajoyl-s
+        api_key: $HEROKU_AUTH_TOKEN
+    - stage: test staging
+      script: 'curl https://ci-me-dice-on-demand-jpajoyl-s.herokuapp.com/'
